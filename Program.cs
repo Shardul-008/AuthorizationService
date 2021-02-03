@@ -16,8 +16,6 @@ namespace AuthorizationService
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            var log4netRepository = log4net.LogManager.GetRepository(Assembly.GetEntryAssembly());
-            log4net.Config.XmlConfigurator.Configure(log4netRepository, new FileInfo("log4net.config"));
         }
 
         //public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -31,12 +29,7 @@ namespace AuthorizationService
            Host.CreateDefaultBuilder(args)
        .ConfigureWebHostDefaults(webBuilder =>
        {
-           webBuilder.UseStartup<Startup>()
-          .ConfigureLogging((hostingContext, logging) =>
-          {
-              logging.AddLog4Net();
-              logging.SetMinimumLevel(LogLevel.Debug);
-          });
+           webBuilder.UseStartup<Startup>();
        });
     }
 }
